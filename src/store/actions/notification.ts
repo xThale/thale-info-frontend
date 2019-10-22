@@ -1,5 +1,5 @@
 import * as constants from '../constants/notification';
-import ErrorNotification from "../../model/ErrorNotification";
+import ErrorNotification from "../../model/state/ErrorNotification";
 import {Action} from "redux";
 
 export interface PublishErrorNotificationAction extends Action {

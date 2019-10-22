@@ -1,13 +1,13 @@
 import React from 'react';
-import GoogleLoginButton from './components/auth/GoogleLoginButton';
 import {createStore} from "redux";
 import {rootReducer} from "./store/reducer/root";
 import {AppState, initState} from "./store/types/appState";
-import { BrowserRouter as Router} from "react-router-dom";
-import { Provider } from 'react-redux';
+import {BrowserRouter as Router} from "react-router-dom";
+import {Provider} from 'react-redux';
 import {loadState, saveState} from "./misc/localStorage";
-import { throttle } from 'lodash';
+import {throttle} from 'lodash';
 import {NavBar} from "./components/NavBar";
+import {DeckListPage} from "./components/DeckListPage";
 
 const state : AppState = loadState() || initState()
 
@@ -26,6 +26,7 @@ const App: React.FC = () => {
       <Router>
             <Provider store={store}>
                 <NavBar />
+                <DeckListPage />
             </Provider>
       </Router>
   );

@@ -1,4 +1,4 @@
-import ErrorNotification from "../../model/ErrorNotification";
+import ErrorNotification from "../../model/state/ErrorNotification";
 
 
 export interface NotificationState {

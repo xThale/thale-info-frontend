@@ -1,12 +1,17 @@
 import {User} from "../../model/User";
+import {TokenInfo} from "../../model/TokenInfo";
 
 
 export interface AuthState {
-    currentUser: User | null
+    user: User | null
+    tokenData: TokenInfo | null
+    loggedIn: boolean
 }
 
 export function initAuthState(): AuthState {
     return {
-        currentUser: null
+        user: null,
+        tokenData: null,
+        loggedIn: false
     }
 }

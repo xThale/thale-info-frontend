@@ -1,17 +1,17 @@
 import config from "../config/Config"
-import {TokenExchangeResponse} from "../model/TokenExchangeResponse";
+import {LoginResponse} from "../model/response/LoginResponse";
 import {LoginMethod, LoginRequest} from "../model/request/LoginRequest";
-import {ProblemError, ProblemResponse} from "../model/ProblemResponse";
+import {ProblemError, ProblemResponse} from "../model/response/ProblemResponse";
 
 const loginUrl = config.backend.backendServerUrl + config.backend.loginUrl;
 
 interface Client {
-    login(code: string, method: LoginMethod): Promise<TokenExchangeResponse | ProblemResponse>
+    login(code: string, method: LoginMethod): Promise<LoginResponse>
 }
 
 export const BackendClient: Client = {
 
-    async login(code: string, method: LoginMethod): Promise<TokenExchangeResponse> {
+    async login(code: string, method: LoginMethod): Promise<LoginResponse> {
 
         const body : LoginRequest = {
             token: code,
@@ -25,7 +25,7 @@ export const BackendClient: Client = {
         }).then(response => {
             return response.json()
         }).then(json => {
-            if ('idToken' in json) {
+            if ('token' in json && 'user' in json) {
                 return json
             } else if ('status' in json) {
                 throw new ProblemError(json)

@@ -1,15 +1,18 @@
 import * as constants from '../constants/auth';
-import {InsertUser} from "../actions/auth";
+import {AuthAction, InsertUser} from "../actions/auth";
 import {AuthState, initAuthState} from "../types/auth";
 
 
 export function authReducer(
     state: AuthState = initAuthState(),
-    action: InsertUser
+    action: AuthAction
 ): AuthState {
     switch (action.type) {
         case constants.INSERT_USER:
-            return {...state, currentUser: action.user}
+            return {...state, user: action.user, tokenData: action.token, loggedIn: true}
+        case constants.LOGOUT_USER:
+            return {...state, user: action.user, tokenData: action.token, loggedIn: false}
+        default:
+            return state
     }
-    return state
 }

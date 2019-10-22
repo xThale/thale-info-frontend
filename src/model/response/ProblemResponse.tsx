@@ -1,6 +1,6 @@
 
 export interface ProblemResponse {
-    status: string
+    status: number
     message: string
     details: string
     timestamp: string
@@ -8,15 +8,15 @@ export interface ProblemResponse {
 
 export class ProblemError extends Error {
 
-    public status: string
-    public details: string
-    public timestamp: string
+    public status: number;
+    public details: string;
+    public timestamp: string;
 
     constructor(problem: ProblemResponse) {
-        super(problem.message)
+        super(problem.message);
 
-        this.status = problem.status
-        this.details = problem.details
+        this.status = problem.status;
+        this.details = problem.details;
         this.timestamp = problem.timestamp
     }
 }
