@@ -1,7 +1,7 @@
 import config from "../config/Config"
 import {LoginResponse} from "../model/response/LoginResponse";
 import {LoginMethod, LoginRequest} from "../model/request/LoginRequest";
-import {ProblemError, ProblemResponse} from "../model/response/ProblemResponse";
+import {ProblemError} from "../model/response/ProblemResponse";
 
 const loginUrl = config.backend.backendServerUrl + config.backend.loginUrl;
 

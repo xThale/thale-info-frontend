@@ -11,7 +11,6 @@ import {BackendClient} from "../../service/BackendClient";
 import {LoginMethod} from "../../model/request/LoginRequest";
 import {ProblemError} from "../../model/response/ProblemResponse";
 import {TokenInfo} from "../../model/TokenInfo";
-import {useSelector} from "../../store/types/appState";
 
 const Window = styled.div`
     display: flex;
@@ -37,13 +36,14 @@ const OptionContainer = styled.div`
     margin-bottom: 20px;
 `;
 
+//TODO: What color
 const Heading = styled(Title)`
     text-align: center;
     
     margin: 0px;
     padding: 10px;
     
-    color: #650E77;
+    color: #650E77; 
     letter-spacing: 1px;
     border-bottom: 1px solid;
     margin-bottom: 30px;

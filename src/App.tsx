@@ -9,18 +9,21 @@ import {throttle} from 'lodash';
 import {NavBar} from "./components/NavBar";
 import {DeckListPage} from "./components/DeckListPage";
 
-const state : AppState = loadState() || initState()
+// Load initial or saved state
+const state : AppState = loadState() || initState();
 
 const store = createStore(
     rootReducer,
     state
 );
 
+// Save state
 store.subscribe(throttle(() =>
     saveState(store.getState()),
     1000
-))
+));
 
+// The main application component
 const App: React.FC = () => {
   return (
       <Router>

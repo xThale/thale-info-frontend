@@ -1,5 +1,5 @@
 import * as constants from '../constants/auth';
-import {AuthAction, InsertUser} from "../actions/auth";
+import {AuthAction} from "../actions/auth";
 import {AuthState, initAuthState} from "../types/auth";
 
 

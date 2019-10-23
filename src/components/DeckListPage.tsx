@@ -2,10 +2,22 @@ import React from 'react';
 import {useSelector} from "../store/types/appState";
 import Title from "./common/Title";
 import styled from "styled-components";
+import {Deck} from "../model/Deck";
+import {DeckContainer} from "./DeckContainer";
 
 const Container = styled.div`
     margin: 50px;
 `
+
+const decks : Deck[] = [{
+    id: "",
+    name: "TestTitel",
+    cards: [{
+        front: "front",
+        back: "back",
+        leech: false
+    }]
+}]
 
 export const DeckListPage: React.FC = () => {
 
@@ -13,6 +25,7 @@ export const DeckListPage: React.FC = () => {
 
     return (
         <Container>
+            <DeckContainer deck={decks[0]} />
             {user &&
                 <Title>
                     Welcome {user.name},

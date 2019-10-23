@@ -1,5 +1,5 @@
 import {notificationReducer} from "./notification";
-import { combineReducers } from "redux"
+import {combineReducers} from "redux"
 import {authReducer} from "./auth";
 
 
