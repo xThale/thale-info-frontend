@@ -3,15 +3,15 @@ import {TokenInfo} from "../../model/TokenInfo";
 
 
 export interface AuthState {
-    user: User | null
-    tokenData: TokenInfo | null
+    user?: User
+    tokenData?: TokenInfo
     loggedIn: boolean
 }
 
 export function initAuthState(): AuthState {
     return {
-        user: null,
-        tokenData: null,
+        user: undefined,
+        tokenData: undefined,
         loggedIn: false
     }
 }

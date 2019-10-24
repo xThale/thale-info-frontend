@@ -11,8 +11,8 @@ export interface InsertUser extends Action {
 
 export interface LogoutUser extends Action {
     type: constants.LOGOUT_USER
-    user: null
-    token: null
+    user: undefined
+    token: undefined
 }
 
 export type AuthAction = InsertUser | LogoutUser
@@ -28,7 +28,7 @@ export function insertUser(user: User, token: TokenInfo): AuthAction {
 export function logout(): AuthAction {
     return {
         type: constants.LOGOUT_USER,
-        user: null,
-        token: null
+        user: undefined,
+        token: undefined
     }
 }

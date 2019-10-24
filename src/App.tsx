@@ -6,8 +6,10 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from 'react-redux';
 import {loadState, saveState} from "./misc/localStorage";
 import {throttle} from 'lodash';
-import {NavBar} from "./components/NavBar";
-import {DeckListPage} from "./components/DeckListPage";
+import {ThemeProvider} from "styled-components";
+import config from "./config/Config";
+import {BreakpointProvider} from 'react-socks';
+import {PageLayout} from "./components/layout/PageLayout";
 
 // Load initial or saved state
 const state : AppState = loadState() || initState();
@@ -23,16 +25,21 @@ store.subscribe(throttle(() =>
     1000
 ));
 
+const theme = config.theme;
+
 // The main application component
 const App: React.FC = () => {
   return (
-      <Router>
-            <Provider store={store}>
-                <NavBar />
-                <DeckListPage />
-            </Provider>
-      </Router>
+      <ThemeProvider theme={theme}>
+          <Router>
+              <Provider store={store}>
+                  <BreakpointProvider>
+                      <PageLayout />
+                  </BreakpointProvider>
+              </Provider>
+          </Router>
+      </ThemeProvider>
   );
-}
+};
 
 export default App;

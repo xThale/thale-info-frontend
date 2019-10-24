@@ -1,3 +1,38 @@
+import {setDefaultBreakpoints} from "react-socks";
+import {css} from "styled-components";
+
+/**
+ * Config determining the width for media queries
+ */
+interface MediaConfig {
+    xxsmall: number
+    xsmall: number
+    small: number
+    medium: number
+    large: number
+    xlarge: number
+}
+
+const mediaConfig: MediaConfig = {
+    xxsmall: 0,
+    xsmall: 400,
+    small: 576,
+    medium: 768,
+    large: 992,
+    xlarge: 1200
+}
+
+/**
+ * Config for css widths and heights
+ */
+interface CssValues {
+    navBarHeight: number
+}
+
+const cssValues: CssValues = {
+    navBarHeight: 35
+}
+
 /**
  * Config for the website theme
  */
@@ -7,7 +42,11 @@ interface ThemeConfig {
     normal: string
     dark: string
     darker: string
+
+    navBarTextColor: string
     title: string
+    text: string
+
     fontFamily: string
 }
 
@@ -17,7 +56,11 @@ const themeConfig : ThemeConfig = {
     normal: "#7E1E93",
     dark: "#650E77",
     darker: "#4E025E",
-    title: "#C59FCE",
+
+    navBarTextColor: "#C59FCE",
+    title: "#650E77", // Same as dark
+    text: "black",
+
     fontFamily: "Roboto"
 };
 
@@ -53,12 +96,25 @@ const backendConfig : BackendConfig = {
 interface Config {
     theme: ThemeConfig,
     backend: BackendConfig,
-    auth: AuthConfig
+    auth: AuthConfig,
+    media: MediaConfig,
+    css: CssValues
 }
 const Config : Config = {
     theme: themeConfig,
     backend: backendConfig,
-    auth: authConfig
+    auth: authConfig,
+    media: mediaConfig,
+    css: cssValues
 };
+
+setDefaultBreakpoints([
+    { xxsmall: Config.media.xxsmall }, // all mobile devices
+    { xsmall: Config.media.xsmall },
+    { small: Config.media.small }, // mobile devices (not sure which one's this big)
+    { medium: Config.media.medium }, // ipad, ipad pro, ipad mini, etc
+    { large: Config.media.large }, // smaller laptops
+    { xlarge: Config.media.xlarge } // laptops and desktops
+]);
 
 export default Config

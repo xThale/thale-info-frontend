@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import GoogleLoginButton from "./GoogleLoginButton";
-import Title from "../common/Title";
-import LoginOverlay from "../common/WindowOverlay";
 import {GoogleLoginResponseOffline} from "react-google-login";
 import {useDispatch} from "react-redux";
 import {User} from "../../model/User";
@@ -11,20 +9,21 @@ import {BackendClient} from "../../service/BackendClient";
 import {LoginMethod} from "../../model/request/LoginRequest";
 import {ProblemError} from "../../model/response/ProblemResponse";
 import {TokenInfo} from "../../model/TokenInfo";
+import {Title} from "../common/Title";
+import {BlackPageOverlay} from "../common/BlackPageOverlay"
+import {Text} from "../common/Text";
 
 const Window = styled.div`
     display: flex;
     flex-direction: column;
-
     background: white;
     width: 400px;
-    
     -moz-box-shadow:    inset 0 0 1px #000000;
     -webkit-box-shadow: inset 0 0 1px #000000;
     box-shadow:         inset 0 0 1px #000000;
 `;
 
-const ErrorMessage = styled.a`
+const ErrorMessage = styled(Text)`
     color: red;
     text-align: center;
     margin: 10px 20px 20px 20px;
@@ -36,14 +35,9 @@ const OptionContainer = styled.div`
     margin-bottom: 20px;
 `;
 
-//TODO: What color
 const Heading = styled(Title)`
     text-align: center;
-    
-    margin: 0px;
     padding: 10px;
-    
-    color: #650E77; 
     letter-spacing: 1px;
     border-bottom: 1px solid;
     margin-bottom: 30px;
@@ -91,13 +85,13 @@ export const LoginWindow: React.FC<Props> = (props) => {
         })
     }
 
-    function onError(error: any) {
+    function onError() {
         setErrorMessage("You could not be logged in")
     }
 
     return(
         // TODO: Add Logout and error
-        <LoginOverlay onClick={close}>
+        <BlackPageOverlay onClick={close}>
             <Window onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                 <OptionContainer>
                     <div>
@@ -120,7 +114,7 @@ export const LoginWindow: React.FC<Props> = (props) => {
                 }
 
             </Window>
-        </LoginOverlay>
+        </BlackPageOverlay>
     )
 
 };

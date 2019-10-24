@@ -5,7 +5,7 @@ import styled from "styled-components";
 import GoogleIcon from "../../resources/images/google-icon.png"
 import config from "../../config/Config"
 
-const SpecializedButton = styled(Button)`
+const LoginButton = styled(Button)`
     width: 100%;
     padding: 10px;
     font-size: 20px;
@@ -16,15 +16,14 @@ const GoogleIconContainer = styled.img`
     width: 25px;
     height: 25px;
     margin-right: 5px;
-    vertical-align:middle;
 `;
 
-const ButtonComponent = (props : any) => {
+const GoogleLoginButtonComponent = (props : any) => {
     return(
-        <SpecializedButton onClick={props.onClick} disabled={props.disabled}>
+        <LoginButton onClick={props.onClick} disabled={props.disabled}>
             <GoogleIconContainer src={GoogleIcon}/>
             Google
-        </SpecializedButton>
+        </LoginButton>
     )
 };
 
@@ -40,7 +39,7 @@ const GoogleLoginButton: React.FC<Props> = (props) => {
             clientId={config.auth.googleClientId}
             buttonText={"GoogleLoginButton"}
             render={props => (
-                ButtonComponent(props)
+                GoogleLoginButtonComponent(props)
             )}
             onSuccess={onSuccess}
             onFailure={onFailure}
@@ -55,7 +54,6 @@ const GoogleLoginButton: React.FC<Props> = (props) => {
         if ('code' in response){
             props.onLogin(response)
         } else {
-            // TODO: Handle error
             console.error("Unsupported response type for login");
             console.log(response);
         }

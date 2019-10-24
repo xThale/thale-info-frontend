@@ -1,44 +1,44 @@
-import styled, {css} from 'styled-components'
-import config from "../../config/Config"
+import styled from 'styled-components'
 
 interface props {
-    invertedButton?: boolean
+    inverted?: boolean
+    bold?: boolean
+    highlight?: boolean
 }
 
 export const Button = styled.button<props>`
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 0px;
+  padding: 10px;
+
+  cursor: pointer;
+  outline:none;
+
   background: ${props =>
-    (!props.invertedButton && 'transparent') ||
-    (props.invertedButton && config.theme.dark)
+    (!props.inverted && props.theme.dark) ||
+    (props.inverted && 'transparent')
   }
   
   color: ${props =>
-    (!props.invertedButton && config.theme.title) ||
-    (props.invertedButton && 'white')
+    (!props.inverted && 'white') ||
+    (props.inverted && props.theme.title)
   }
   
-  font-family: ${config.theme.fontFamily};
+  font-family: ${props => props.theme.fontFamily};
   font-size: 15px;
   
+  ${props => props.bold && `font-weight: bold;`}
   
-  
-  justify-content: center;
-  text-align: center;
-  
-  padding: 0;
-  border: 0px;
-  padding: 0px 20px;
-  
-  
-  
-  outline:none;
-  
-  :hover {
-        font-weight: bold;
+  ${props => (props.inverted || props.highlight) && 
+    `:hover {
         color: white;
         background-clip: padding-box;
-        cursor: pointer;
         transition: .5s ease;
         opacity: 0.95;
         background-color: #A75DB7;
-    }
+    }`}
 `;
