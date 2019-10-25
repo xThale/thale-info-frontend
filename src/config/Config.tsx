@@ -1,5 +1,3 @@
-import {setDefaultBreakpoints} from "react-socks";
-import {css} from "styled-components";
 
 /**
  * Config determining the width for media queries
@@ -107,14 +105,5 @@ const Config : Config = {
     media: mediaConfig,
     css: cssValues
 };
-
-setDefaultBreakpoints([
-    { xxsmall: Config.media.xxsmall }, // all mobile devices
-    { xsmall: Config.media.xsmall },
-    { small: Config.media.small }, // mobile devices (not sure which one's this big)
-    { medium: Config.media.medium }, // ipad, ipad pro, ipad mini, etc
-    { large: Config.media.large }, // smaller laptops
-    { xlarge: Config.media.xlarge } // laptops and desktops
-]);
 
 export default Config

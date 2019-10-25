@@ -8,7 +8,6 @@ import {loadState, saveState} from "./misc/localStorage";
 import {throttle} from 'lodash';
 import {ThemeProvider} from "styled-components";
 import config from "./config/Config";
-import {BreakpointProvider} from 'react-socks';
 import {PageLayout} from "./components/layout/PageLayout";
 
 // Load initial or saved state
@@ -33,9 +32,7 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
           <Router>
               <Provider store={store}>
-                  <BreakpointProvider>
-                      <PageLayout />
-                  </BreakpointProvider>
+                    <PageLayout />
               </Provider>
           </Router>
       </ThemeProvider>
