@@ -1,17 +1,17 @@
-import {initNotificationState, NotificationState} from "./notification";
 import {AuthState, initAuthState} from "./auth";
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
+import {DeckState, initDeckState} from "./deck";
 
 export interface AppState {
-    notification: NotificationState
     auth: AuthState
+    deck: DeckState
 }
 
 export function initState(): AppState {
     return {
-        notification: initNotificationState(),
-        auth: initAuthState()
+        auth: initAuthState(),
+        deck: initDeckState()
     }
 }
-
+// TODO: Use more redux
 export const useSelector: TypedUseSelectorHook<AppState> = useReduxSelector;

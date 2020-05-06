@@ -18,15 +18,6 @@ const GoogleIconContainer = styled.img`
     margin-right: 5px;
 `;
 
-const GoogleLoginButtonComponent = (props : any) => {
-    return(
-        <LoginButton onClick={props.onClick} disabled={props.disabled}>
-            <GoogleIconContainer src={GoogleIcon}/>
-            Google
-        </LoginButton>
-    )
-};
-
 interface Props {
     onLogin: (response: GoogleLoginResponseOffline) => void
     onError: (error: any) => void
@@ -39,7 +30,10 @@ const GoogleLoginButton: React.FC<Props> = (props) => {
             clientId={config.auth.googleClientId}
             buttonText={"GoogleLoginButton"}
             render={props => (
-                GoogleLoginButtonComponent(props)
+                <LoginButton onClick={props.onClick} disabled={props.disabled}>
+                    <GoogleIconContainer src={GoogleIcon}/>
+                    Google
+                </LoginButton>
             )}
             onSuccess={onSuccess}
             onFailure={onFailure}

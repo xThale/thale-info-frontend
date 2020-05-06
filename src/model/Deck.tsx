@@ -1,11 +1,14 @@
 
 export interface Deck {
-    id: string
+    uuid: string
+    owner: string
     name: string
     cards: Card[]
 }
 
 export interface Card {
+    uuid: string
+    index: number
     front: string
     back: string
     leech: boolean

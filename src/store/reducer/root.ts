@@ -1,9 +1,9 @@
-import {notificationReducer} from "./notification";
 import {combineReducers} from "redux"
 import {authReducer} from "./auth";
+import {deckReducer} from "./deck";
 
 
 export const rootReducer = combineReducers({
-    notification: notificationReducer,
-    auth: authReducer
-})
+    auth: authReducer,
+    deck: deckReducer
+});

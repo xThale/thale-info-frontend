@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from "styled-components";
-import {Deck} from "../../model/Deck";
-import {Title} from "../common/Title";
-import {Text} from "../common/Text";
-import { useHistory } from 'react-router';
+import {Deck} from "../../../model/Deck";
+import {Title} from "../../common/Title";
+import {Word} from "../../common/Word";
+import {useHistory} from 'react-router';
 
 const Container = styled.div`
     display: flex;
@@ -38,7 +38,11 @@ export const DeckContainer : React.FC<props> = (props) => {
     const history = useHistory();
 
     function redirect() {
-        history.push(`/deck/${props.deck.id}`)
+        history.push(`/deck/${props.deck.uuid}`)
+    }
+
+    if (props.deck?.cards === undefined || props.deck.cards.length === 0) {
+        return <React.Fragment />
     }
 
     return (
@@ -46,7 +50,7 @@ export const DeckContainer : React.FC<props> = (props) => {
             <Heading>
                 {props.deck.name}
             </Heading>
-            <Text>Cards contained: {props.deck.cards.length}</Text>
+            <Word>Cards contained: {props.deck.cards.length}</Word>
         </Container>
     )
 

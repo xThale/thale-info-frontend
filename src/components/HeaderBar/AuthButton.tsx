@@ -1,8 +1,8 @@
 import React from "react";
-import {HeaderBarButton} from "./HeaderBarButton";
 import {ProfilePicture} from "../common/ProfilePicture";
 import styled from "styled-components";
 import config from "../../config/Config"
+import {Button} from "../common/Button";
 
 interface Props {
     loggedIn: boolean,
@@ -10,16 +10,23 @@ interface Props {
     onClick: () => void
 }
 
-const Button = styled(HeaderBarButton)`
+const AuthButton = styled(Button).attrs({
+    inverted: true,
+    bold: true
+})`
     margin-left: auto;
     margin-right: 20px;
+    
+    height: 100%;
+    padding: 0 20px;
+    color: ${props => props.theme.headerBarTextColor}
     
     @media (max-width: ${config.media.large}px) {
         margin-right: 10px;
     }
-`
+`;
 
-export const HeaderBarAuthenticationButton : React.FC<Props> = (props) => {
+export const HeaderBarAuthButton : React.FC<Props> = (props) => {
 
     const ProfileImg = () => {
         if (props.userProfileImgSource) {
@@ -30,13 +37,13 @@ export const HeaderBarAuthenticationButton : React.FC<Props> = (props) => {
     };
 
     return (
-        <Button onClick={props.onClick}>
+        <AuthButton onClick={props.onClick}>
             {props.loggedIn ? ([
                 ProfileImg(),
                 "Logout"
             ]) : (
                 "Login"
             )}
-        </Button>
+        </AuthButton>
     )
 };

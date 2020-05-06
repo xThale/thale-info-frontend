@@ -4,6 +4,7 @@ interface props {
     inverted?: boolean
     bold?: boolean
     highlight?: boolean
+    pressed?: boolean
 }
 
 export const Button = styled.button<props>`
@@ -16,7 +17,7 @@ export const Button = styled.button<props>`
   padding: 10px;
 
   cursor: pointer;
-  outline:none;
+  outline: none;
 
   background: ${props =>
     (!props.inverted && props.theme.dark) ||
@@ -41,4 +42,11 @@ export const Button = styled.button<props>`
         opacity: 0.95;
         background-color: #A75DB7;
     }`}
+    
+  ${props => props.pressed && `
+        color: white;
+        background-clip: padding-box;
+        transition: .5s ease;
+        opacity: 0.95;
+        background-color: #A75DB7;`}
 `;

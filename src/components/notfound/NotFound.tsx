@@ -8,7 +8,6 @@ import {Button} from "../common/Button";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    position: fixed;
     padding:0;
     margin:0;
     
@@ -16,9 +15,6 @@ const Container = styled.div`
     justify-content: center;
     
     background: white;
-
-    top:0;
-    left:0;
 
     width: 100%;
     height: 100%;
@@ -28,7 +24,6 @@ const Container = styled.div`
 const Image = styled.img`
     width: 300px;
     height: 300px;
-    border: 1px solid;
     cursor: pointer;
 `;
 

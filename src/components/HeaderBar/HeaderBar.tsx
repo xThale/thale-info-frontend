@@ -6,35 +6,27 @@ import {Title} from "../common/Title";
 import {useSelector} from "../../store/types/appState";
 import {logout} from "../../store/actions/auth";
 import {useDispatch} from "react-redux";
-import {HeaderBarAuthenticationButton} from "./HeaderBarAuthenticationButton";
 import {useHistory} from "react-router";
+import {Navigation} from "./Navigation";
+import {HeaderBarAuthButton} from "./AuthButton";
 
-const StyledNavBar = styled.div`
+const HeaderBarContainer = styled.div`
     display: flex;
+    z-index: 10;
+    height: 100%;
+    
     align-items: center;
     
-    position: relative;
-    z-index: 10;
-    
-    width: 100%;
-    height: 100%
-    
     background: ${config.theme.dark};
-    
     -moz-box-shadow:    1px 1px 1px 0px ${config.theme.lighter};
     -webkit-box-shadow: 1px 1px 1px 0px ${config.theme.lighter};
     box-shadow:         1px 1px 1px 0px ${config.theme.lighter};
-    
 `;
 
-const NavBarSiteTitle = styled(Title)`
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
+const SiteTitle = styled(Title)`
+    margin: 0px 40px 0px 20px;
     cursor: pointer;
-    color: ${props => props.theme.navBarTextColor}
-    height: 100%;
-    margin: 0px 20px;
+    color: ${props => props.theme.headerBarTextColor}
 `;
 
 export const HeaderBar: React.FC = () => {
@@ -53,21 +45,21 @@ export const HeaderBar: React.FC = () => {
 
     const history = useHistory();
 
-    function gotoHome() {
-        history.push("/")
-    }
-
     return(
-        <StyledNavBar>
+        <HeaderBarContainer>
 
             {
                 // The title of this page
-                <NavBarSiteTitle onClick={gotoHome}>Thale</NavBarSiteTitle>
+                <SiteTitle onClick={gotoHome}>Thale</SiteTitle>
+            }
+
+            {
+                <Navigation />
             }
 
             {
                 // The Login / Logout Button
-                <HeaderBarAuthenticationButton
+                <HeaderBarAuthButton
                     loggedIn={loggedIn}
                     userProfileImgSource={userProfilePic}
                     onClick={onAuthClick}
@@ -76,11 +68,15 @@ export const HeaderBar: React.FC = () => {
             }
 
             {showLoginWindow &&
-            <LoginWindow handleClose={closeLoginWindow}/>
+                <LoginWindow handleClose={closeLoginWindow}/>
             }
 
-        </StyledNavBar>
+        </HeaderBarContainer>
     );
+
+    function gotoHome() {
+        history.push("/")
+    }
 
     function onAuthClick() {
         if (loggedIn) {

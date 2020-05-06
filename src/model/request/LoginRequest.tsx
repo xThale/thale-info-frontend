@@ -1,6 +1,6 @@
 
 export enum LoginMethod {
-    GOOGLE= "GOOGLE"
+    GOOGLE= "google"
 }
 
 export interface LoginRequest {

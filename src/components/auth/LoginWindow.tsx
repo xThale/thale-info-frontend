@@ -11,7 +11,7 @@ import {ProblemError} from "../../model/response/ProblemResponse";
 import {TokenInfo} from "../../model/TokenInfo";
 import {Title} from "../common/Title";
 import {BlackPageOverlay} from "../common/BlackPageOverlay"
-import {Text} from "../common/Text";
+import {Word} from "../common/Word";
 
 const Window = styled.div`
     display: flex;
@@ -23,7 +23,7 @@ const Window = styled.div`
     box-shadow:         inset 0 0 1px #000000;
 `;
 
-const ErrorMessage = styled(Text)`
+const ErrorMessage = styled(Word)`
     color: red;
     text-align: center;
     margin: 10px 20px 20px 20px;
@@ -73,7 +73,7 @@ export const LoginWindow: React.FC<Props> = (props) => {
     function onLoginCode(code: GoogleLoginResponseOffline) {
         BackendClient.login(code.code, LoginMethod.GOOGLE).then(token => {
             setErrorMessage(null);
-            insertUserAction(token.user, token.token)
+            insertUserAction(token.user, token.token);
             props.handleClose(undefined)
         }).catch(error => {
             logoutUserAction();
@@ -90,7 +90,6 @@ export const LoginWindow: React.FC<Props> = (props) => {
     }
 
     return(
-        // TODO: Add Logout and error
         <BlackPageOverlay onClick={close}>
             <Window onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                 <OptionContainer>
